@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"time"
 
@@ -29,5 +30,12 @@ func main() {
 	recordMetrics()
 
 	http.Handle("/metrics", promhttp.Handler())
-	http.ListenAndServe(":2112", nil)
+	go func() {
+		if err := http.ListenAndServe(":2113", nil); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	// Block indefinitely to keep the program running
+	select {}
 }
