@@ -1,6 +1,6 @@
 module github.com/nickstern2002/NicksTests
 
-go 1.22
+go 1.22.6
 
 require github.com/prometheus/client_golang v1.19.1
 
